@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors!</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #444;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+
+        function computerPlay() {
+            const CHOICES = ['rock', 'paper', 'scissors'];
+            const randomChoice = CHOICES[Math.floor(Math.random() * CHOICES.length)];
+            return randomChoice;
+        }
+
+        function playerPlay() {
+            let choice = prompt("Rock, Paper, or Scissors?");
+            return choice.toLowerCase();
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            const winMsg = `You Win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}`;
+            const loseMsg = `You Lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}`;
+
+            if (playerSelection === computerSelection)
+                return "It's a tie!"
+
+            switch (playerSelection) {
+                case "rock": {
+                    if (computerSelection === "paper") {
+                        return loseMsg;
+                    }
+                    if (computerSelection === "scissors") {                    
+                        return winMsg;
+                    }
+                    break;
+                }
+
+                case "paper": {
+                    if (computerSelection === "scissors") {
+                        return loseMsg;
+                    }
+                    if (computerSelection === "rock") {
+                        return winMsg;
+                    }
+                    break;
+                }
+
+                case "scissors": {
+                    if (computerSelection === "rock") {
+                        return loseMsg;
+                    }
+                    if (computerSelection === "paper") {
+                        return winMsg;
+                    }
+                    break;
+                }
+
+                default: {
+                    return "Hmm.. You didn't enter rock, paper, or scissors?"
+                }
+            }
+        }
+
+        function game() {
+            let currentRound = 1;
+            const totalRounds = 5;
+
+            console.log(`Rock, Paper, Scissors! Number of Rounds: ${totalRounds}`)
+
+            while (currentRound <= totalRounds) {
+                const playerSelection = playerPlay();
+                const computerSelection = computerPlay();
+
+                console.log(playRound(playerSelection, computerSelection));
+                currentRound++;
+            }
+        }
+
+        game();
+
+
+    </script>
+</body>
+
+</html>
